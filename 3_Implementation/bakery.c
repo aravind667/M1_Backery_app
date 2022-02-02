@@ -14,7 +14,7 @@ void account(void);
 void accountcreated(void);
 void login_fail(void);
 void logout(void);
-void attempt(void);
+void bill(void);
 
 struct pass
 {
@@ -152,7 +152,8 @@ void account(void)
     }
 
     // Writing to the file
-    fwrite(&u1, sizeof(u1), 1, fp);
+    fwrite(&u1, sizeof(u1),
+           1, fp);
 
     // Closing file
     fclose(fp);
@@ -202,19 +203,19 @@ void login(void)
 
     if (fp == NULL)
     {
-        printf("ERROR WHILE OPENING\n ");
+        printf("ERROR IN OPENING FILE");
     }
 
-    printf(" \t\t\tACCOUNT LOGIN \n");
+    printf(" ACCOUNT LOGIN ");
 
-    printf("\t\t***********************************\n");
+    printf("***********************************************");
 
-    printf("\n \t==== LOG IN ====\n");
+    printf("==== LOG IN ====");
 
-    printf("\tUSERNAME..: ");
+    printf("USERNAME.. ");
     scanf("%s", &username);
 
-    printf("\tPASSWORD..: ");
+    printf("PASSWORD..");
 
     // Input the password
     for (i = 0; i < 50; i++)
@@ -228,26 +229,19 @@ void login(void)
         }
 
         else
-        {
-
             break;
-        }
     }
 
     // Checking if username
     // exists in the file or not
-    while (fread(&u1, sizeof(u1), 1, fp))
+    while (fread(&u1, sizeof(u1),
+                 1, fp))
     {
-        if (strcmp(username, u1.username) == 0)
+        if (strcmp(username,
+                   u1.username) == 0)
         {
             login_suc();
             show_det(username);
-        }
-        else
-        {
-            login_fail();
-            getch();
-            break;
         }
     }
 
@@ -381,6 +375,7 @@ void Menu(void)
         printf("a.Vegetable gyoza --- Rs89/-");
         printf("\nenter ur choices according to pallate");
         scanf("%c", ch2);
+        
 
         switch (ch2)
         {
