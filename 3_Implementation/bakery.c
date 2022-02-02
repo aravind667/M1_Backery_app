@@ -152,8 +152,7 @@ void account(void)
     }
 
     // Writing to the file
-    fwrite(&u1, sizeof(u1),
-           1, fp);
+    fwrite(&u1, sizeof(u1), 1, fp);
 
     // Closing file
     fclose(fp);
