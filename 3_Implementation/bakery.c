@@ -14,6 +14,11 @@ void account(void);
 void accountcreated(void);
 void logout(void);
 void bill(void);
+void bill1(void);
+void bill2(void);
+void printMeals();
+void orderMeals();
+double orderForPerson();
 
 struct pass
 {
@@ -49,19 +54,19 @@ int main()
     // Creating a Main
     // menu for the user
     printf("\n\n");
-    printf("WELCOME TO DELICIOUS FOODS\n\n");
+    printf("\t\t                      ****************WELCOME TO APPLE RESTURANT***************\n");
 
-    printf("**********************************\n\n");
+    printf("\t                         --------------------------------------------------------------------\n\n");
 
-    printf("APPLE BACKERY- richness of flavours\n \n");
+    printf(" \t\t\t\t\t\t               APPLE BACKERY RESTURANT- richness of flavours\n \n");
 
-    printf("1.... CREATE A LOGIN ACCOUNT \n \n");
+    printf("\t\t\t1.... CREATE A LOGIN ACCOUNT \n \n");
 
-    printf("2.... ALREADY A USER? SIGN IN \n \n");
+    printf("\t\t\t2.... ALREADY A USER? SIGN IN \n \n");
 
-    printf("3.... EXIT\n \n");
+    printf("\t\t\t3.... EXIT\n \n");
 
-    printf("\n \nENTER YOUR CHOICE..");
+    printf("\n \n\t\t\tENTER YOUR CHOICE..");
 
     scanf("%d", &choice);
 
@@ -302,9 +307,9 @@ void show_det(char username1[])
     // actions by user
     printf(" \nHOME\n ");
     printf("******\n");
-    printf(" 1....CHECK BALANCE\n");
+    printf(" 1....MENU\n");
     printf(" 2....ADD MONEY\n");
-    printf(" 3....MENU\n");
+    printf(" 3....CHECK BALANCE\n");
     printf(" 4....LOG OUT\n");
     printf(" 5....EXIT\n");
 
@@ -314,14 +319,14 @@ void show_det(char username1[])
     switch (choice)
     {
     case 1:
-        checkbalance(username1);
+        Menu();
         break;
 
     case 2:
         transfermoney();
         break;
     case 3:
-        Menu();
+        checkbalance(username1);
         break;
 
     case 4:
@@ -337,69 +342,143 @@ void show_det(char username1[])
 void Menu(void)
 {
     int men_ch;
-    int ch2;
-    int o;
+    int p;
     printf("\n1...STATERS");
     printf("\n2...MAIN COURSE");
     printf("\n3...DESERTS");
-    printf("\nENTER YOUR CHOICE:");
+    printf("\n4...BOOK A DINE^_-");
+    printf("\n enter ur choices according to pallate : ");
     scanf("%d", &men_ch);
 
     switch (men_ch)
     {
     case 1:
-        printf("here you go\n");
-        printf("1.Vegetable gyoza --- Rs89/-\n");
-        printf("2.Vegetable gyoza --- Rs89/-\n");
-        printf("3.Vegetable gyoza --- Rs89/-\n");
-        printf("4.Vegetable gyoza --- Rs89/-\n");
-        printf("\n enter ur choices according to pallate");
-        scanf("%d", &ch2);
-
-        switch (ch2)
-        {
-        case 1:
-            printf("DO YOU WANT TO ORDER\n");
-            printf("\nyes or no(1 for YES and 0 for NO)\n");
-            scanf("%d", &o);
-            switch (o)
-            {
-            case 1:
-                printf("thank you for order\n");
-                printf("\nhere taking to bill");
-                break;
-
-            case 0:
-                printf("try another");
-                Menu();
-                break;
-            }
-
-            break;
-
-        case 2:
-            break;
-
-        case 3:
-
-            break;
-
-        case 4:
-            break;
-        }
+        bill();
         break;
 
     case 2:
-        printf("");
+        bill();
         break;
 
     case 3:
-        printf("");
+        bill();
+        break;
+
+    case 4:
+
+        printf("enter how many people : ");
+        scanf("%d", &p);
+        printf("The dine is booked for %d people", p);
         break;
     }
 }
+double price[7] = {180.00, 105.00, 190.00, 140.00, 120.00, 220.00, 160.00};
+double mealTaxPrices[7];
+int peopleNumber;
 void bill(void)
 {
+
+    char response = 'y';
+
+    printMeals();
+    while (response == 'y' || response == 'Y')
+    {
+        printf("please enter number of persons  :");
+        scanf("%d", &peopleNumber);
+
+        orderMeals();
+
+        printf("\nwould you like to continue(y/n):");
+        scanf("\n%c", &response);
+    }
+
+    printf("\n      ******************** THANK YOU FOR COMING  *************************\n");
+    printf("\20**********************   HOPE IT PLEASURES UR PALLETE  **************************\20 \n");
+    system("pause");
+}
+
+void printMeals()
+{
+
+    printf("\20*******************  WELCOME TO APPLE BACKERY RESTURANT **************************\20\n");
+    printf(" \t\t\t Below is the menue:\20\n");
+    printf(" \t\t\t MEALS\t\t\tPRICE:\n");
+    printf(" \t\t\t \22*******************************\22\n");
+    printf(" \t\t\t 1- Fish and Chips\tRS180.00\n");
+    printf(" \t\t\t 2- chickne Spaghetti\t\tRS105.00\n");
+    printf(" \t\t\t 3- T-Bone Mutton\tRS190.00\n");
+    printf(" \t\t\t 4- Chicken Chop\tRS140.00\n");
+    printf(" \t\t\t 5- Chicken Maryland\tRS120.00\n");
+    printf(" \t\t\t 6- Red Lobster\t\tRS220.00\n");
+    printf(" \t\t\t 7- Seafood Platter\tRS160.00\n");
+
+    printf("\n");
+}
+void orderMeals()
+{
+    double totalPriceForFood;
+    double allPayment, discount;
+    printf("                      \t\t**** ORDER MENUE****\n");
+
+    totalPriceForFood = orderForPerson();
+    allPayment = totalPriceForFood;
+
+    printf("\n \t\t     \22**************************************\22    \n");
+    printf(" \t\t   ******************  final BILL   ************      \n");
+    printf(" \t\t\tnumber\t\tcount\t\ttotal price\n");
+    printf(" \t\t\tpersons\t\t%d\t\t%5.2f\n", peopleNumber, totalPriceForFood);
+    printf(" \t\t\tTotal bill\t\t\t%5.2f\n", allPayment);
+
+    if (allPayment < 10)
+        discount = ((allPayment * 0.5) / 100);
+    else if (allPayment >= 10 && allPayment < 20)
+        discount = ((allPayment * 1) / 100);
+    else if (allPayment >= 20 && allPayment < 30)
+        discount = ((allPayment * 1.5) / 100);
+    else if (allPayment >= 30 && allPayment < 40)
+        discount = ((allPayment * 2.0) / 100);
+    else
+        discount = ((allPayment * 5.0) / 100);
+
+    printf(" \t\t\tTotal bill after discount\t%5.2f\n", allPayment - discount);
+}
+double orderForPerson()
+{
+    int menuOption, i, amount;
+    char response = 'y';
+    double totalPerPerson = 0.0, totalAllPerson = 0.0;
+    double tax = 5.0;
+    if (peopleNumber <= 0)
+        printf("\n ");
+    else
+        printf("*personol order:\n");
+    for (i = 0; i < peopleNumber; i++)
+    {
+        printf("Person %d please enter your orders\n", i + 1);
+        while (response == 'y' || response == 'Y')
+        {
+            printf("please enter your option:");
+            scanf("%d", &menuOption);
+            if (menuOption < 1 || menuOption > 7)
+            {
+                printf("sorry we don`t have this order \nagain! ");
+                continue;
+            }
+            printf("please enter your amount of order:");
+            scanf("%d", &amount);
+
+            totalPerPerson = totalPerPerson + (amount * price[menuOption - 1]);
+
+            printf("\nWould you like to enter more orders(y/n):");
+            scanf("\n%c", &response);
+        }
+        printf("\n");
+        totalAllPerson += totalAllPerson + totalPerPerson;
+        totalPerPerson = 0.0;
+        response = 'y';
+    }
+
+    return totalAllPerson + ((totalAllPerson * tax) / 100);
 }
 
 void transfermoney(void)
@@ -423,12 +502,12 @@ void transfermoney(void)
     fm = fopen("mon.txt", "ab");
 
     printf("---- ADDING MONEY TO WALLET----\n");
-    printf("========================");
+    printf("========================\n\n");
 
-    printf("FROM (your username).. ");
+    printf("\nFROM (your username).. ");
     scanf("%s", &usernamet);
 
-    printf(" TO (name of wallet)..");
+    printf("\n TO (name of wallet)..");
     scanf("%s", &usernamep);
 
     // Checking for username if it
@@ -444,7 +523,7 @@ void transfermoney(void)
     }
 
     // Taking amount input
-    printf("ENTER THE AMOUNT TO BE ADDED..");
+    printf("\nENTER THE AMOUNT TO BE ADDED..\n\n");
     scanf("%d", &m1.money1);
 
     // Writing to the file
@@ -458,7 +537,7 @@ void transfermoney(void)
         "--------------------------------------------------"
         "--------------------------------------------");
 
-    printf("Adding amount, Please wait..");
+    printf("\nAdding amount, Please wait..");
 
     for (i = 0; i < 70; i++)
     {
@@ -470,7 +549,7 @@ void transfermoney(void)
         printf("*");
     }
 
-    printf("AMOUNT ADDED SUCCESSFULLY ....");
+    printf("\n                     AMOUNT ADDED SUCCESSFULLY ....");
     getch();
 
     // Close the files
@@ -493,32 +572,26 @@ void checkbalance(char username2[])
     // Opening amount file record
     fm = fopen("mon.txt", "rb");
 
-    printf("==== BALANCE DASHBOARD ====");
-    printf("***************************");
-    printf("S no.\t");
-    printf("TRANSACTION ID|t");
-    printf("AMOUNT \t");
-
+    printf("      ==== BALANCE DASHBOARD ====\n");
+    printf("\n    ***************************");
     // Reading username to
     // fetch the correct record
     while (fread(&m1, sizeof(m1), 1, fm))
     {
         if (strcmp(username2, m1.usernameto) == 0)
         {
-            printf("%d", i);
+            printf("\nS no.: %d \n", i);
             i++;
-            printf("%s", m1.userpersonfrom);
+            printf("\nTRANSACTION ID : %s \n", m1.userpersonfrom);
 
-            printf("%d", m1.money1);
+            printf("\nAMOUNT : %d \n", m1.money1);
             // Adding and
             // finding total money
             summoney = summoney + m1.money1;
         }
     }
 
-    printf("TOTAL AMOUNT");
-
-    printf("%d", summoney);
+    printf("\nTOTAL AMOUNT =%d", summoney);
 
     getch();
 
@@ -532,7 +605,7 @@ void logout(void)
 {
     int i, j;
     system("cls");
-    printf("please wait, logging out");
+    printf("\n    please wait, logging out");
 
     for (i = 0; i < 10; i++)
     {
@@ -546,7 +619,7 @@ void logout(void)
 
     printf("Sign out successfully..\n");
 
-    printf("press any key to continue..");
+    printf("             press any key to continue..");
 
     getch();
 }
