@@ -108,14 +108,11 @@ void account(void)
     printf("\n\nFIRST NAME..");
     scanf("%s", &u1.fname);
 
-    printf("\n\n\nLAST NAME..");
+    printf("\n\nLAST NAME..");
     scanf("%s", &u1.lname);
 
     printf("\n\nFATHER's NAME..");
     scanf("%s", &u1.fathname);
-
-    printf("\n\nMOTHER's NAME..");
-    scanf("%s", &u1.mothname);
 
     printf("\n\nADDRESS..");
     scanf("%s", &u1.address);
@@ -128,13 +125,13 @@ void account(void)
     printf("\nYEAR-");
     scanf("%d", &u1.year);
 
-    printf("\n\nPHONE NUMBER");
+    printf("\n\nPHONE NUMBER:");
     scanf("%s", u1.pnumber);
 
-    printf("\n\nUSERNAME.. ");
+    printf("\n\nUSERNAME..: ");
     scanf("%s", &u1.username);
 
-    printf("\n\nPASSWORD..");
+    printf("\n\nPASSWORD..:");
 
     // Taking password in the form of
     // stars
@@ -152,15 +149,11 @@ void account(void)
     }
 
     // Writing to the file
-    fwrite(&u1, sizeof(u1),
-           1, fp);
+    fwrite(&u1, sizeof(u1), 1, fp);
 
     // Closing file
     fclose(fp);
 
-    // Calling another function
-    // after successful creation
-    // of account
     accountcreated();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////created
@@ -176,7 +169,7 @@ void accountcreated(void)
         i--;
     }
 
-    printf("\n \n ACCOUNT CREATED SUCCESSFULLY(order & enjoy).....");
+    printf("\n \n ACCOUNT CREATED SUCCESSFULLY(order & enjoy) :) :) :).....");
 
     printf("\nPress enter to login");
 
@@ -206,16 +199,16 @@ void login(void)
         printf("ERROR IN OPENING FILE");
     }
 
-    printf(" ACCOUNT LOGIN ");
+    printf("\n \t\t\t ACCOUNT LOGIN ");
 
-    printf("***********************************************");
+    printf("\n \t***********************************************");
 
-    printf("==== LOG IN ====");
+    printf("\n \n \t\t\t==== LOG IN ====");
 
-    printf("USERNAME.. ");
+    printf("\nUSERNAME.. ");
     scanf("%s", &username);
 
-    printf("PASSWORD..");
+    printf("\nPASSWORD..");
 
     // Input the password
     for (i = 0; i < 50; i++)
@@ -234,16 +227,14 @@ void login(void)
 
     // Checking if username
     // exists in the file or not
-    while (fread(&u1, sizeof(u1),
-                 1, fp))
+    while (fread(&u1, sizeof(u1), 1, fp))
     {
-        if (strcmp(username,
-                   u1.username) == 0)
+        if (strcmp(username, u1.username) == 0)
         {
             login_suc();
             show_det(username);
         }
-    }
+        }
 
     // Closing the file
     fclose(fp);
@@ -268,15 +259,15 @@ void login_suc(void)
     struct pass u1;
     system("cls");
     printf("PLZ WAIT A WHILE.....\t");
-    printf("fetching details\n\n");
+    printf("\n \t\tfetching details\n\n");
     for (i = 0; i < 20000; i++)
     {
         i++;
         i--;
     }
 
-    printf("LOGIN SUCCESSFUL :-) :-) :-)..../n");
-    printf("Press enter to continue");
+    printf("LOGIN SUCCESSFUL :-) :-) :-)....\n");
+    printf("\nPress enter to continue");
 
     getch();
 }
@@ -362,31 +353,30 @@ void Menu(void)
     int men_ch;
     char ch2;
     int o;
-    printf("1...STATERS");
-    printf("2...MAIN COURSE");
-    printf("3...DESERTS");
-    printf("ENTER YOUR CHOICE");
+    printf("\n1...STATERS");
+    printf("\n2...MAIN COURSE");
+    printf("\n3...DESERTS");
+    printf("\nENTER YOUR CHOICE");
     scanf("%d", &men_ch);
 
     switch (men_ch)
     {
     case 1:
         printf("here you go\n");
-        printf("a.Vegetable gyoza --- Rs89/-");
-        printf("\nenter ur choices according to pallate");
+        printf("a.Vegetable gyoza --- Rs89/-\n");
+        printf("\n enter ur choices according to pallate");
         scanf("%c", ch2);
-        
 
         switch (ch2)
         {
         case 'a':
-            printf("DO YOU WANT TO ORDER");
-            printf("yes or no(1 for YES and 0 for NO");
+            printf("DO YOU WANT TO ORDER\n");
+            printf("yes or no(1 for YES and 0 for NO\n");
             scanf("%d", &o);
             switch (o)
             {
             case 1:
-                printf("thank you for order");
+                printf("thank you for order\n");
                 break;
 
             case 2:
