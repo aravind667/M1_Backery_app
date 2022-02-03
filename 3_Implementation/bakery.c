@@ -305,7 +305,7 @@ void show_det(char username1[])
     printf(" 1....CHECK BALANCE\n");
     printf(" 2....ADD MONEY\n");
     printf(" 3....MENU\n");
-    printf(" 4....LOG OUT\\n");
+    printf(" 4....LOG OUT\n");
     printf(" 5....EXIT\n");
 
     printf(" ENTER YOUR CHOICES..");
@@ -342,14 +342,17 @@ void Menu(void)
     printf("\n1...STATERS");
     printf("\n2...MAIN COURSE");
     printf("\n3...DESERTS");
-    printf("\nENTER YOUR CHOICE");
+    printf("\nENTER YOUR CHOICE:");
     scanf("%d", &men_ch);
 
     switch (men_ch)
     {
     case 1:
         printf("here you go\n");
-        printf("a.Vegetable gyoza --- Rs89/-\n");
+        printf("1.Vegetable gyoza --- Rs89/-\n");
+        printf("2.Vegetable gyoza --- Rs89/-\n");
+        printf("3.Vegetable gyoza --- Rs89/-\n");
+        printf("4.Vegetable gyoza --- Rs89/-\n");
         printf("\n enter ur choices according to pallate");
         scanf("%d", &ch2);
 
@@ -357,17 +360,18 @@ void Menu(void)
         {
         case 1:
             printf("DO YOU WANT TO ORDER\n");
-            printf("yes or no(1 for YES and 0 for NO\n");
+            printf("\nyes or no(1 for YES and 0 for NO)\n");
             scanf("%d", &o);
             switch (o)
             {
             case 1:
                 printf("thank you for order\n");
-                printf("here taking to bill");
+                printf("\nhere taking to bill");
                 break;
 
             case 0:
                 printf("try another");
+                Menu();
                 break;
             }
 
@@ -396,9 +400,7 @@ void Menu(void)
 }
 void bill(void)
 {
-    
 }
-
 
 void transfermoney(void)
 {
