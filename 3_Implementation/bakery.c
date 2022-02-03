@@ -12,7 +12,6 @@ void login(void);
 void login_suc(void);
 void account(void);
 void accountcreated(void);
-void login_fail(void);
 void logout(void);
 void bill(void);
 
@@ -234,23 +233,12 @@ void login(void)
             login_suc();
             show_det(username);
         }
-        }
+    }
 
     // Closing the file
     fclose(fp);
 }
-void login_fail(void)
-{
-    int i;
-    for (i = 0; i < 20000; i++)
-    {
-        i++;
-        i--;
-        break;
-    }
 
-    printf("\n\t\t\t\t...........data mismatched ^_^ try again...........");
-}
 /////////////////////////////////success
 void login_suc(void)
 {
@@ -266,8 +254,8 @@ void login_suc(void)
         i--;
     }
 
-    printf("LOGIN SUCCESSFUL :-) :-) :-)....\n");
-    printf("\nPress enter to continue");
+    printf("\nLOGIN SUCCESSFUL :-) :-) :-)....\n");
+    printf("\n\nPress enter to continue");
 
     getch();
 }
@@ -300,8 +288,6 @@ void show_det(char username1[])
 
             printf("\nFATHER's NAME..%s %s", u1.fathname, u1.lname);
 
-            printf("\nMOTHER's NAME..%s", u1.mothname);
-
             printf("\nMOBILE NUMBER..%s", u1.pnumber);
 
             printf("\nDATE OF BIRTH.. %d-%d-%d", u1.date, u1.month, u1.year);
@@ -319,8 +305,8 @@ void show_det(char username1[])
     printf(" 1....CHECK BALANCE\n");
     printf(" 2....ADD MONEY\n");
     printf(" 3....MENU\n");
-    printf(" 4....LOG OUT\n\n");
-    printf(" 5....EXIT\n\n");
+    printf(" 4....LOG OUT\\n");
+    printf(" 5....EXIT\n");
 
     printf(" ENTER YOUR CHOICES..");
     scanf("%d", &choice);
@@ -351,7 +337,7 @@ void show_det(char username1[])
 void Menu(void)
 {
     int men_ch;
-    char ch2;
+    int ch2;
     int o;
     printf("\n1...STATERS");
     printf("\n2...MAIN COURSE");
@@ -365,11 +351,11 @@ void Menu(void)
         printf("here you go\n");
         printf("a.Vegetable gyoza --- Rs89/-\n");
         printf("\n enter ur choices according to pallate");
-        scanf("%c", ch2);
+        scanf("%d", &ch2);
 
         switch (ch2)
         {
-        case 'a':
+        case 1:
             printf("DO YOU WANT TO ORDER\n");
             printf("yes or no(1 for YES and 0 for NO\n");
             scanf("%d", &o);
@@ -377,23 +363,24 @@ void Menu(void)
             {
             case 1:
                 printf("thank you for order\n");
+                printf("here taking to bill");
                 break;
 
-            case 2:
+            case 0:
                 printf("try another");
                 break;
             }
 
             break;
 
-        case 'b':
+        case 2:
             break;
 
-        case 'c':
+        case 3:
 
             break;
 
-        case 'd':
+        case 4:
             break;
         }
         break;
@@ -407,6 +394,11 @@ void Menu(void)
         break;
     }
 }
+void bill(void)
+{
+    
+}
+
 
 void transfermoney(void)
 {
