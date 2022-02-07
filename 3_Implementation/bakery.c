@@ -1,24 +1,20 @@
+/**
+ * @file bakery.c
+ * @author KOTTAKOTA ARAVIND (aravindsurya62071@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-02-07
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
 #include <string.h>
+#include"bill1.h"
+#include"functions.h"
 
-void checkbalance(char *);
-void transfermoney(void);
-void Menu(void);
-void show_det(char *);
-void person(char *);
-void login(void);
-void login_suc(void);
-void account(void);
-void accountcreated(void);
-void logout(void);
-void bill(void);
-void bill1(void);
-void bill2(void);
-void printMeals();
-void orderMeals();
-double orderForPerson();
 
 struct pass
 {
@@ -30,7 +26,6 @@ struct pass
     char fname[20];
     char lname[20];
     char fathname[20];
-    char mothname[20];
     char address[50];
 };
 
@@ -353,7 +348,7 @@ void Menu(void)
     switch (men_ch)
     {
     case 1:
-        bill();
+        bill1();
         break;
 
     case 2:
@@ -372,9 +367,7 @@ void Menu(void)
         break;
     }
 }
-double price[7] = {180.00, 105.00, 190.00, 140.00, 120.00, 220.00, 160.00};
-double mealTaxPrices[7];
-int peopleNumber;
+
 void bill(void)
 {
 
@@ -405,11 +398,11 @@ void printMeals()
     printf(" \t\t\t MEALS\t\t\tPRICE:\n");
     printf(" \t\t\t \22*******************************\22\n");
     printf(" \t\t\t 1- Fish and Chips\tRS180.00\n");
-    printf(" \t\t\t 2- chickne Spaghetti\t\tRS105.00\n");
+    printf(" \t\t\t 2- chickne Spaghetti\tRS105.00\n");
     printf(" \t\t\t 3- T-Bone Mutton\tRS190.00\n");
     printf(" \t\t\t 4- Chicken Chop\tRS140.00\n");
     printf(" \t\t\t 5- Chicken Maryland\tRS120.00\n");
-    printf(" \t\t\t 6- Red Lobster\t\tRS220.00\n");
+    printf(" \t\t\t 6- Red Lobster\tRS220.00\n");
     printf(" \t\t\t 7- Seafood Platter\tRS160.00\n");
 
     printf("\n");
@@ -623,3 +616,4 @@ void logout(void)
 
     getch();
 }
+
