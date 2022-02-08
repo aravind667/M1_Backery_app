@@ -26,3 +26,5 @@
 ![SWOT](https://github.com/aravind667/M1_Backery_app/blob/main/1_Requirements/User%20friendly%20desgin%20Quick%20login%20and%20signup%20process.jpg)
 
 ## 4W's 1H
+
+![4W_1H](https://github.com/aravind667/M1_Backery_app/blob/e9593a1b49f27d1c94e02a1d9d6f8ddd3f1d3b2e/1_Requirements/4w1h.png)
