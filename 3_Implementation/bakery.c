@@ -91,8 +91,6 @@ void account(void)
     FILE *fp, *fu;
     struct pass u1;
 
-    struct userpass u2;
-
     // Opening file to
     // write data of a user
     fp = fopen("username.txt", "ab");
@@ -180,11 +178,10 @@ void login(void)
     char username[50];
     char password[50];
 
-    int i, j, k;
+    int i;
     char ch;
-    FILE *fp, *fu;
+    FILE *fp;
     struct pass u1;
-    struct userpass u2;
 
     // Opening file of
     // user data
@@ -240,8 +237,6 @@ void login(void)
 void login_suc(void)
 {
     int i;
-    FILE *fp;
-    struct pass u1;
     system("cls");
     printf("PLZ WAIT A WHILE.....\t");
     printf("\n \t\tfetching details\n\n");
@@ -263,7 +258,7 @@ void show_det(char username1[])
 {
     system("cls");
     FILE *fp;
-    int choice, i;
+    int choice;
     fp = fopen("username.txt", "rb");
     struct pass u1;
 
@@ -556,7 +551,6 @@ void checkbalance(char username2[])
     system("cls");
     FILE *fm;
     struct money m1;
-    char ch;
     int i = 1, summoney = 0;
 
     // Opening amount file record
