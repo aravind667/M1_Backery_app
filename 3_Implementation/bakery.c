@@ -1,20 +1,19 @@
 /**
  * @file bakery.c
  * @author KOTTAKOTA ARAVIND (aravindsurya62071@gmail.com)
- * @brief 
+ * @brief
  * @version 0.1
- * @date 2022-02-07
- * 
+ * @date 2022-02-05
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
 #include <string.h>
-#include"bill1.h"
-#include"functions.h"
-
+#include "bill1.h"
+#include "functions.h"
 
 struct pass
 {
@@ -43,8 +42,7 @@ struct money
 //////////////////////////main
 int main()
 {
-    int i, a, b, choice;
-    int passwordlength;
+    int choice;
 
     // Creating a Main
     // menu for the user
@@ -88,11 +86,10 @@ int main()
 void account(void)
 {
     char password[20];
-    int passwordlength, i, seek = 0;
+    int i;
     char ch;
     FILE *fp, *fu;
     struct pass u1;
-    struct userpass p1;
 
     struct userpass u2;
 
@@ -616,4 +613,3 @@ void logout(void)
 
     getch();
 }
-
