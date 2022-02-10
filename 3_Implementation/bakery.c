@@ -87,8 +87,8 @@ void account(void)
 {
     char password[20];
     int i;
-    char ch;
-    FILE *fp, *fu;
+    char c;
+    FILE *fp;
     struct pass u1;
 
     // Opening file to
@@ -131,12 +131,12 @@ void account(void)
     // stars
     for (i = 0; i < 50; i++)
     {
-        ch = getch();
-        if (ch != 13)
+        c = getch();
+        if (c != 13)
         {
-            password[i] = ch;
-            ch = '*';
-            printf("%c", ch);
+            password[i] = c;
+            c = '*';
+            printf("%c", c);
         }
         else
             break;
