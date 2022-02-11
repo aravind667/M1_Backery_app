@@ -9,8 +9,7 @@ on:
 jobs:
   build:
 
-
-    runs-on: windows-latest
+    runs-on: ubantu-latest
 
     steps:
     - uses: actions/checkout@v2
