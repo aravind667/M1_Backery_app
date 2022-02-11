@@ -13,4 +13,5 @@
 |  T_09   | H_09   | check balance                                      | Enter choice      | Trancation_id, person_name,amount        | Trancation_id, person_name,amount        | PASS      |
 
 | T_10 | H_10 | Logout | Enter Choice | Successfully logout | Successfully logout | PASS |
+
 | T_11 | H_11 | Exit | Enter choice | Exit | Exit | PASS |
