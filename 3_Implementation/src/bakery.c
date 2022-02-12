@@ -9,7 +9,6 @@
  *
  */
 #include <stdio.h>
-#include <conio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "bill1.h"
@@ -21,7 +20,7 @@ struct pass
     int date;
     int month;
     int year;
-    char pnumber[15];
+    int pnumber;
     char fname[20];
     char lname[20];
     char fathname[20];
@@ -66,7 +65,7 @@ int main()
     switch (choice)
     {
     case 1:
-        system("cls");
+
         printf("\n\n USERNAME 50 CHARACTERS MAX!!");
         printf("\n\n PASSWORD 50 CHARACTERS MAX!!");
         account();
@@ -80,13 +79,11 @@ int main()
         exit(0);
         break;
 
-        getch();
     }
 }
 void account(void)
 {
     struct userpass p1;
-    int i;
     FILE *fp;
     struct pass u1;
 
@@ -95,20 +92,19 @@ void account(void)
     fp = fopen("username.txt", "ab");
 
     // Inputs
-    system("cls");
     printf("\n\n!!!!!CREATE ACCOUNT!!!!!");
 
     printf("\n\nFIRST NAME..");
-    scanf("%s", &u1.fname);
+    scanf("%s", &u1.fname[20]);
 
     printf("\n\nLAST NAME..");
-    scanf("%s", &u1.lname);
+    scanf("%s", &u1.lname[20]);
 
     printf("\n\nFATHER's NAME..");
-    scanf("%s", &u1.fathname);
+    scanf("%s", &u1.fathname[20]);
 
     printf("\n\nADDRESS..");
-    scanf("%s", &u1.address);
+    scanf("%s", &u1.address[50]);
 
     printf("\n\nDATE OF BIRTH..");
     printf("\nDATE-");
@@ -119,13 +115,13 @@ void account(void)
     scanf("%d", &u1.year);
 
     printf("\n\nPHONE NUMBER:");
-    scanf("%s", u1.pnumber);
+    scanf("%d", &u1.pnumber);
 
     printf("\n\nUSERNAME..: ");
-    scanf("%s", &u1.username);
+    scanf("%s", &u1.username[50]);
 
     printf("\n\nPASSWORD..:");
-    scanf("%s", &p1.password);
+    scanf("%s", &p1.password[50]);
 
     // Taking password in the form of
     // stars
@@ -142,8 +138,7 @@ void account(void)
 void accountcreated(void)
 {
     int i;
-    char ch;
-    system("cls");
+
     printf("PLEASE WAIT UNTIL....\n\nYOUR DATA IS PROCESSING....");
     for (i = 0; i < 200000000; i++)
     {
@@ -155,19 +150,15 @@ void accountcreated(void)
 
     printf("\nPress enter to login");
 
-    getch();
     login();
 }
 ///////////////////////////////////login
 void login(void)
 {
-    system("cls");
 
     char username[50];
     char password[50];
 
-    int i;
-    char ch;
     FILE *fp;
     struct pass u1;
     struct userpass p1;
@@ -188,17 +179,17 @@ void login(void)
     printf("\n \n \t\t\t==== LOG IN ====");
 
     printf("\nUSERNAME.. ");
-    scanf("%s", &username);
+    scanf("%s", &username[50]);
 
     printf("\nPASSWORD..");
-    scanf("%s", &password);
+    scanf("%s", &password[50]);
     // Input the password
 
     // Checking if username
     // exists in the file or not
     while (fread(&u1, sizeof(u1), 1, fp))
     {
-        if (strcmp(username, u1.username) == 0)
+        if ((strcmp(username, u1.username) == 0) || (strcmp(password, p1.password) == 0))
         {
             login_suc();
             show_det(username);
@@ -213,7 +204,7 @@ void login(void)
 void login_suc(void)
 {
     int i;
-    system("cls");
+
     printf("PLZ WAIT A WHILE.....\t");
     printf("\n \t\tfetching details\n\n");
     for (i = 0; i < 20000; i++)
@@ -225,14 +216,14 @@ void login_suc(void)
     printf("\nLOGIN SUCCESSFUL :-) :-) :-)....\n");
     printf("\n\nPress enter to continue");
 
-    getch();
+   
 }
 
 ///////////////////////////////////details
 
 void show_det(char username1[])
 {
-    system("cls");
+
     FILE *fp;
     int choice;
     fp = fopen("username.txt", "rb");
@@ -256,7 +247,7 @@ void show_det(char username1[])
 
             printf("\nFATHER's NAME..%s %s", u1.fathname, u1.lname);
 
-            printf("\nMOBILE NUMBER..%s", u1.pnumber);
+            printf("\nMOBILE NUMBER..%d", u1.pnumber);
 
             printf("\nDATE OF BIRTH.. %d-%d-%d", u1.date, u1.month, u1.year);
 
@@ -429,8 +420,6 @@ double orderForPerson()
             scanf("%d", &amount);
 
             totalPerPerson = totalPerPerson + (amount * price[menuOption - 1]);
-
-            printf("\nWould you like to enter more orders(y/n):");
             scanf("\n%c", &response);
         }
         printf("\n");
@@ -450,7 +439,6 @@ void transfermoney(void)
     struct money m1;
     char usernamet[20];
     char usernamep[20];
-    system("cls");
 
     // Opening file in read mode to
     // read user's username
@@ -466,10 +454,10 @@ void transfermoney(void)
     printf("========================\n\n");
 
     printf("\nFROM (your username).. ");
-    scanf("%s", &usernamet);
+    scanf("%s", &usernamet[50]);
 
     printf("\n TO (name of wallet)..");
-    scanf("%s", &usernamep);
+    scanf("%s", &usernamep[50]);
 
     // Checking for username if it
     // is present in file or not
@@ -485,7 +473,7 @@ void transfermoney(void)
 
     // Taking amount input
     printf("\nENTER THE AMOUNT TO BE ADDED..\n\n");
-    scanf("%d", &m1.money1);
+    scanf("%ld", &m1.money1);
 
     // Writing to the file
     fwrite(&m1, sizeof(m1), 1, fm);
@@ -511,7 +499,6 @@ void transfermoney(void)
     }
 
     printf("\n                     AMOUNT ADDED SUCCESSFULLY ....");
-    getch();
 
     // Close the files
     fclose(fp);
@@ -524,7 +511,7 @@ void transfermoney(void)
 
 void checkbalance(char username2[])
 {
-    system("cls");
+
     FILE *fm;
     struct money m1;
     int i = 1, summoney = 0;
@@ -544,7 +531,7 @@ void checkbalance(char username2[])
             i++;
             printf("\nTRANSACTION ID : %s \n", m1.userpersonfrom);
 
-            printf("\nAMOUNT : %d \n", m1.money1);
+            printf("\nAMOUNT : %ld \n", m1.money1);
             // Adding and
             // finding total money
             summoney = summoney + m1.money1;
@@ -553,7 +540,6 @@ void checkbalance(char username2[])
 
     printf("\nTOTAL AMOUNT =%d", summoney);
 
-    getch();
 
     // Closing file after
     // reading it
@@ -564,7 +550,7 @@ void checkbalance(char username2[])
 void logout(void)
 {
     int i, j;
-    system("cls");
+
     printf("\n    please wait, logging out");
 
     for (i = 0; i < 10; i++)
@@ -581,5 +567,5 @@ void logout(void)
 
     printf("             press any key to continue..");
 
-    getch();
+
 }
